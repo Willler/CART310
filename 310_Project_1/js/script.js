@@ -19,6 +19,10 @@ let noseHeightSlider;
 let lipWidthSlider;
 let lipHeightSlider;
 
+let hairRedSlider;
+let hairBlueSlider;
+let hairGreenSlider;
+
 function setup() {
   let cnv = createCanvas(windowWidth - 10, windowHeight - 10);
   let x = (windowWidth - width) / 2;
@@ -45,9 +49,13 @@ function drawFace() {
   noStroke();
   rectMode(CENTER);
 
+  let redValue = hairRedSlider.value();
+  let blueValue = hairBlueSlider.value();
+  let greenValue = hairGreenSlider.value();
+
 
   //hair back
-  fill(80, 0, 0);
+  fill(redValue - 15, greenValue - 15, blueValue - 15);
   rect(windowWidth/2, windowHeight/2 + 100, 290, 300);
 
   //neck
@@ -106,14 +114,24 @@ function drawFace() {
   fill(255);
   let eyeValue = eyeSlider.value();
   let eyeHeightValue = eyeHeightSlider.value();
-  ellipse(windowWidth/2 - 70, windowHeight/2 + 15, eyeValue, eyeHeightValue);
-  ellipse(windowWidth/2 + 70, windowHeight/2 + 15, eyeValue, eyeHeightValue);
+  //eyeshadow
+  fill(80);
+  ellipse(windowWidth/2 - 65, windowHeight/2 + 15, eyeValue, eyeHeightValue + 10);
+  ellipse(windowWidth/2 + 65, windowHeight/2 + 15, eyeValue, eyeHeightValue + 10);
+  //whites
+  fill(255);
+  ellipse(windowWidth/2 - 65, windowHeight/2 + 15, eyeValue, eyeHeightValue);
+  ellipse(windowWidth/2 + 65, windowHeight/2 + 15, eyeValue, eyeHeightValue);
+  //pupils
+  fill(0);
+  ellipse(windowWidth/2 - 65, windowHeight/2 + 15, 25, 25);
+  ellipse(windowWidth/2 + 65, windowHeight/2 + 15, 25, 25);
 
   //hair
-  fill(100, 0, 0);
+  fill(redValue, greenValue, blueValue);
   arc(windowWidth/2, windowHeight/2 - 50, 310, 350, PI, 0);
-  rect(windowWidth/2 - 135, windowHeight/2 + 70, 40, 300);
-  rect(windowWidth/2 + 135, windowHeight/2 + 70, 40, 300);
+  rect(windowWidth/2 - 134, windowHeight/2 + 70, 40, 300);
+  rect(windowWidth/2 + 134, windowHeight/2 + 70, 40, 300);
 }
 
 function faceOver() {
@@ -137,7 +155,7 @@ function faceOver() {
 }
 
 function cheekOver() {
-  if ((mouseX > (windowWidth/2 - 107.5)) && (mouseX < (windowWidth/2 + 107.5)) && (mouseY > (windowHeight/2 - 45)) && ((mouseY < windowHeight/2 + 45))) {
+  if ((mouseX > (windowWidth/2 - 107.5)) && (mouseX < (windowWidth/2 + 107.5)) && (mouseY > (windowHeight/2 - 45)) && ((mouseY < windowHeight/2 + 200))) {
     fill(37, 24, 41, 5);
     rect(300, 600, 400, 100);
     fill(255);
@@ -182,7 +200,7 @@ function createSliders() {
   // slider.position(10, 10);
   // slider.style('width', '80px');
   // createSlider(min, max, [value], [step])
-  fill(50, 0, 0, 100);
+  fill(50, 0, 0, 215);
   strokeWeight(8);
   rect(windowWidth - 300, windowHeight/2, 400, 700);
 
@@ -192,7 +210,7 @@ function createSliders() {
 
   cheekSlider = createSlider(200, 230, 215);
   cheekSlider.position(windowWidth - 290, 190);
-  text('Cheekbones', windowWidth - 450, 200);
+  text('Cheeks', windowWidth - 450, 200);
 
   faceHeightSlider = createSlider(380, 420, 400);
   faceHeightSlider.position(windowWidth - 290, 90);
@@ -230,6 +248,17 @@ function createSliders() {
   lipHeightSlider.position(windowWidth - 290, 540);
   text('Lip Height', windowWidth - 450, 550);
 
+  hairRedSlider = createSlider(0, 255, 0);
+  hairRedSlider.position(windowWidth - 290, 590);
+  text('Hair Red', windowWidth - 450, 600);
+
+  hairBlueSlider = createSlider(0, 255, 0);
+  hairBlueSlider.position(windowWidth - 290, 640);
+  text('Hair Blue', windowWidth - 450, 650);
+
+  hairGreenSlider = createSlider(0, 255, 0);
+  hairGreenSlider.position(windowWidth - 290, 690);
+  text('Hair Green', windowWidth - 450, 700);
 
   textStyle(NORMAL);
   noStroke();
