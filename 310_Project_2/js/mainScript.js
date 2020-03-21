@@ -53,6 +53,7 @@ function setup() {
 
   setupEntrance();
   setupDisplay();
+
 }
 
 
@@ -181,6 +182,7 @@ function redUserEntrance() {
 
   if (redUserEntranceX > windowWidth/2 + 710) {
     redUserDisplay();
+    redMovementInstructions();
   }
 }
 
@@ -198,6 +200,7 @@ function greenUserEntrance() {
 
   if (greenUserEntranceX < windowWidth/2 + 360) {
     greenUserDisplay();
+    greenMovementInstruction();
   }
 }
 
@@ -215,6 +218,7 @@ function blueUserEntrance() {
 
   if (blueUserEntranceY > 820) {
     blueUserDisplay();
+    blueMovementInstructions();
   }
 }
 
@@ -324,6 +328,36 @@ function moveStuff() {
   greenUY += greenUYVelocity;
   blueUX += blueUXVelocity;
   blueUY += blueUYVelocity;
+}
+
+function redMovementInstructions() {
+  //  redUX = 50;
+  //  redUY = 630;
+  textSize(14);
+  noStroke();
+  fill(255,0,0);
+  text('Red: WASD', 40, 680);
+
+}
+
+function greenMovementInstruction() {
+  //greenUX = 1000;
+  //greenUY = 267;
+
+  textSize(14);
+  noStroke();
+  fill(0,255,0);
+  text('Green: Arrow Keys', 900, 60);
+}
+
+function blueMovementInstructions() {
+  //blueUX = 330;
+  //blueUY = 50;
+
+  textSize(14);
+  noStroke();
+  fill(0,0,255);
+  text('Blue: UHJK', 380, 50);
 }
 
 function crowdSimulation() {
