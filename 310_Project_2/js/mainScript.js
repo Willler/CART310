@@ -1,8 +1,10 @@
 "use strict";
 
-let redU;
-let greenU;
-let blueU;
+//variables for randomized circle generation
+let numCircles = 150;
+let circleDiameter = 25;
+let circleX;
+let circleY;
 
 let redUserEntranceX;
 let redVelocityX = 0;
@@ -50,16 +52,18 @@ function setup() {
   //
   // // calling the map outline function
   // mapOutline();
-
+  background(0);
   setupEntrance();
   setupDisplay();
+  crowdSimulation();
 
 }
 
 
 function draw() {
-  background(0);
+
   mapOutline();
+
   handleInput();
   moveStuff();
   redUserEntrance();
@@ -177,7 +181,7 @@ function mapOutline() {
 
 function redUserEntrance() {
   noStroke();
-  fill(255, 0, 0);
+  fill(255, 0, 0, 90);
   ellipse(redUserEntranceX, (windowHeight/2)/3 + 6, 25, 25);
 
   if (redUserEntranceX > windowWidth/2 + 710) {
@@ -361,5 +365,14 @@ function blueMovementInstructions() {
 }
 
 function crowdSimulation() {
-
+  for (var i = 0; i < numCircles; i++) {
+    circleX = random(50, 1000);
+    circleY = random(50, 900);
+    let redC = random(0, 255);
+    let greenC = random(0, 255);
+    let blueC = random(0, 255);
+    noStroke();
+    fill(redC, greenC, blueC, 70);
+    ellipse(circleX, circleY, circleDiameter, circleDiameter);
+  }
 }
